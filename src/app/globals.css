@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050d1f;
+  --foreground: #dfe2eb;
+}
+
+body {
+  color: #FFFFFF;
+  background: #050d1f !important;
+  /* ← !important দাও */
+  background-image:
+    linear-gradient(rgba(33, 99, 230, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33, 99, 230, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px;
+  font-family: var(--font-inter), sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(31, 103, 212, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hud-border {
+    border: 1px solid #58d8df44;
+  }
+
+  .hud-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #58d8df;
+  }
+
+  .scanning-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #58d8df, transparent);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: scan 3s linear infinite;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @keyframes scan {
+    0% {
+      top: -2%;
+      opacity: 0;
+    }
+
+    5% {
+      opacity: 1;
+    }
+
+    95% {
+      opacity: 1;
+    }
+
+    100% {
+      top: 102%;
+      opacity: 0;
+    }
+  }
+
+  .blinking-cursor {
+    width: 2px;
+    height: 1.2em;
+    background-color: #7386;
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Lenis Recommended CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar for the cinematic feel */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: violet;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #58d8df44;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #457677;
+}
