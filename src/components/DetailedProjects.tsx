@@ -67,22 +67,22 @@ const PROJECTS = [
   },
   {
     id: "04",
-    title: "MOBILE_BANK_V2",
+    title: "GITHUB-ISSUE-TRACKER",
     category: "FinTech Interface",
     description: "A secure and intuitive mobile banking interface concept focusing on user transaction flows and modern UI/UX.",
     images: [
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2940&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1550565118-3a14e8d0386f?q=80&w=2940&auto=format&fit=crop"
     ],
-    techStack: ["React", "Express.js", "MongoDB", "Auth0"],
+    techStack: ["React", "JavaScript", "html", "CSS3"],
     features: [
       "Secure transaction monitoring",
-      "Real-time balance synchronization",
-      "User-friendly financial dashboard",
-      "Modern encryption and security"
+      "Real-time countdown",
+      "User-friendly financial project"
+
     ],
-    liveLink: "#",
-    githubLink: "https://github.com/ibnaabid/mobile-bank2",
+    liveLink: "https://githubtracker22.netlify.app/",
+    githubLink: "https://github.com/ibnaabid/A-06-digitool.git",
     color: "#ff1a1a"
   }
 ];
@@ -100,7 +100,7 @@ const ProjectSection = ({ project, index }: { project: typeof PROJECTS[0], index
   return (
     <div ref={sectionRef} className="min-h-screen relative flex items-center py-24">
       <div className="container mx-auto px-6 md:px-12">
-        <motion.div 
+        <motion.div
           style={{ opacity, scale }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start"
         >
@@ -108,22 +108,22 @@ const ProjectSection = ({ project, index }: { project: typeof PROJECTS[0], index
           <div className="lg:sticky lg:top-32 h-fit order-1 lg:order-1">
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-tr from-white/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
+
               <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-slate-900 shadow-2xl">
                 {/* Main Image */}
                 <div className="aspect-[4/3] overflow-hidden">
-                  <motion.img 
+                  <motion.img
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.8 }}
-                    src={project.images[0]} 
-                    alt={project.title} 
+                    src={project.images[0]}
+                    alt={project.title}
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   />
                 </div>
 
                 {/* Overlays */}
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
-                
+
                 {/* HUD Elements on Image */}
                 <div className="absolute top-6 left-6 flex gap-3">
                   <div className="px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full flex items-center gap-2">
@@ -248,7 +248,7 @@ const DetailedProjects = () => {
 
       {/* View More CTA */}
       <div className="container mx-auto px-6 md:px-12 py-24 border-t border-white/5 text-center">
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.02 }}
           className="group relative px-12 py-6 bg-white/[0.02] border border-white/10 rounded-[2rem] overflow-hidden"
         >

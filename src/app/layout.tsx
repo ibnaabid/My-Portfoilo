@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Ibna Abid",
   description: "A premium protfoilo for my based on my skills and life line narrative archivement",
   icons: {
-    icon: "/ibnaabid.jpg",
+    icon: "/images.jpg",
   },
 };
 

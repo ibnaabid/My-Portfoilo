@@ -121,7 +121,7 @@ const Hero = () => {
             {/* Photo Container */}
             <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-slate-900 shadow-2xl shadow-primary/20 group">
               <img
-                src="/profile.png"
+                src="/Gemini_Generated_Image_j0n8cej0n8cej0n8.png"
                 alt="Abid"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
