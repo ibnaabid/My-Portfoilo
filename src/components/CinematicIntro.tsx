@@ -5,34 +5,42 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const CinematicIntro = ({ onComplete }: { onComplete?: () => void }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [particles, setParticles] = useState<any[]>([]);
 
   useEffect(() => {
+    setMounted(true);
+    
+    // Generate particles only on the client to avoid hydration mismatch
+    const generatedParticles = Array.from({ length: 30 }).map((_, i) => ({
+      id: i,
+      size: Math.random() * 3 + 1,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      duration: Math.random() * 5 + 5,
+      delay: Math.random() * 2,
+    }));
+    setParticles(generatedParticles);
+
     const timer = setTimeout(() => {
       setIsVisible(false);
       if (onComplete) onComplete();
-    }, 6000); // 6 seconds for the intro
+    }, 3000); // 3 seconds for the intro
     return () => clearTimeout(timer);
   }, [onComplete]);
 
-  // Particle configuration
-  const particles = Array.from({ length: 40 }).map((_, i) => ({
-    id: i,
-    size: Math.random() * 3 + 1,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 10 + 10,
-    delay: Math.random() * 5,
-  }));
-
-  // 3D Code elements
+  // 3D Code elements (Static positions to avoid mismatch)
   const codeElements = [
-    { text: "{ }", x: "15%", y: "20%", rotate: [0, 360], scale: 1.2 },
-    { text: "</>", x: "80%", y: "15%", rotate: [45, 405], scale: 1.5 },
-    { text: "js", x: "10%", y: "75%", rotate: [-20, 340], scale: 1 },
-    { text: "const", x: "85%", y: "80%", rotate: [10, 370], scale: 0.8 },
-    { text: "await", x: "25%", y: "85%", rotate: [-10, 350], scale: 0.9 },
-    { text: "=>", x: "70%", y: "25%", rotate: [30, 390], scale: 1.1 },
+    { text: "{ }", x: "15%", y: "20%", scale: 1.2 },
+    { text: "</>", x: "80%", y: "15%", scale: 1.5 },
+    { text: "js", x: "10%", y: "75%", scale: 1 },
+    { text: "const", x: "85%", y: "80%", scale: 0.8 },
+    { text: "await", x: "25%", y: "85%", scale: 0.9 },
+    { text: "=>", x: "70%", y: "25%", scale: 1.1 },
   ];
+
+  if (!mounted) return null;
+
 
   return (
     <AnimatePresence>
@@ -111,7 +119,7 @@ const CinematicIntro = ({ onComplete }: { onComplete?: () => void }) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-7xl font-bold tracking-[0.2em] text-white uppercase mb-4 relative">
                 {"Let’s run code".split("").map((char, index) => (
@@ -120,8 +128,8 @@ const CinematicIntro = ({ onComplete }: { onComplete?: () => void }) => {
                     initial={{ opacity: 0, filter: "blur(10px)" }}
                     animate={{ opacity: 1, filter: "blur(0px)" }}
                     transition={{
-                      duration: 0.5,
-                      delay: 1 + index * 0.1,
+                      duration: 0.3,
+                      delay: 0.4 + index * 0.05,
                       ease: "easeOut",
                     }}
                   >
@@ -135,7 +143,7 @@ const CinematicIntro = ({ onComplete }: { onComplete?: () => void }) => {
                     opacity: [0.3, 0.5, 0.3],
                     scale: [1, 1.05, 1],
                   }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{ duration: 2, repeat: Infinity }}
                   className="absolute inset-0 blur-2xl bg-blue-500/20 -z-10 rounded-full"
                 />
               </h1>
@@ -145,19 +153,20 @@ const CinematicIntro = ({ onComplete }: { onComplete?: () => void }) => {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 1.5, delay: 1.5, ease: "circOut" }}
+              transition={{ duration: 0.8, delay: 1.2, ease: "circOut" }}
               className="h-[1px] w-48 md:w-96 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent mx-auto mb-6"
             />
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 2.5 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
               className="text-blue-200/60 font-mono text-sm md:text-lg tracking-[0.3em] uppercase"
             >
               Initializing Portfolio...
             </motion.p>
           </div>
+
 
           {/* Scanning Line Effect */}
           <motion.div

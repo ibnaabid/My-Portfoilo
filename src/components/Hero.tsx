@@ -108,49 +108,44 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="relative w-72 h-72 md:w-[450px] md:h-[450px] group"
           >
-            {/* Advanced Coding HUD Frame */}
-            <div className="absolute inset-0 border border-primary/20 rounded-2xl animate-pulse"></div>
-            <div className="absolute -inset-2 border border-primary/10 rounded-2xl rotate-2"></div>
-            <div className="absolute -inset-4 border border-white/5 rounded-2xl -rotate-1"></div>
+            {/* Bubbling Photo Container */}
 
-            {/* Scanning Line Effect */}
-            <motion.div 
-              animate={{ top: ["0%", "100%", "0%"] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              className="absolute left-0 right-0 h-[2px] bg-primary/40 z-20 pointer-events-none blur-[1px]"
-            />
-
-            {/* Corner Brackets */}
-            <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary z-30"></div>
-            <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary z-30"></div>
-            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary z-30"></div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary z-30"></div>
-
-            {/* Image with 3D Tilt Hover */}
-            <motion.div 
-              whileHover={{ 
-                rotateY: 15, 
-                rotateX: -10,
-                scale: 1.02,
-                boxShadow: "0 0 50px rgba(56, 189, 248, 0.3)"
+            <motion.div
+              animate={{
+                borderRadius: [
+                  "60% 40% 30% 70% / 60% 30% 70% 40%",
+                  "30% 60% 70% 40% / 50% 60% 30% 60%",
+                  "60% 40% 30% 70% / 60% 30% 70% 40%"
+                ],
               }}
-              style={{ perspective: 1000 }}
-              className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl transition-all duration-500 cursor-pointer bg-slate-900"
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="relative w-full h-full overflow-hidden border-2 border-primary/30 shadow-[0_0_40px_rgba(56,189,248,0.2)] bg-slate-900 group cursor-pointer"
             >
-              <img
-                src="/hero-portrait.png"
-                alt="Abid Portrait"
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-              />
-              
-              {/* Overlay: Coding Vibe / Matrix Effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-              <div className="absolute top-4 left-4 font-mono text-[8px] text-primary/60 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div>SYSTEM_INFO: ACTIVE</div>
-                <div>SEC_LEVEL: 01</div>
-                <div>STACK: MERN_NEXTJS</div>
-              </div>
+              {/* 3D Tilt Wrapper inside the bubble */}
+              <motion.div 
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-full h-full"
+              >
+                <img
+                  src="/978615f4-16e6-4983-ac9b-ee4d0522f928.jpg"
+                  alt="Abid"
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Overlay: Coding Vibe / Matrix Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity"></div>
+                
+                {/* Floating HUD inside the bubble */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 font-mono text-[9px] text-primary bg-black/40 px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  USER_ID: ABID_2024
+                </div>
+              </motion.div>
             </motion.div>
+
 
             {/* Animated Floating Badges */}
             <motion.div

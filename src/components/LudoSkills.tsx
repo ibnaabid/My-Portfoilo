@@ -60,18 +60,18 @@ const LudoSkills = () => {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <section id="skills" ref={containerRef} className="relative h-[350vh] bg-[#050B18] overflow-visible">
+    <section id="skills" ref={containerRef} className="relative h-[350vh] bg-[#1A120B] overflow-visible">
       {/* Dynamic Ambient Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,0,0.15),transparent_70%)]" />
       
       {/* Sticky Content */}
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Background Grid */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-          <div className="grid grid-cols-15 grid-rows-15 w-full h-full border border-primary/20">
+          <div className="grid grid-cols-15 grid-rows-15 w-full h-full border border-white/5">
             {Array.from({ length: 225 }).map((_, i) => (
-              <div key={i} className="border-[0.5px] border-primary/10" />
+              <div key={i} className="border-[0.5px] border-white/5" />
             ))}
           </div>
         </div>
@@ -84,29 +84,29 @@ const LudoSkills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               className="max-w-xl"
             >
-              <span className="font-technical-sm text-primary tracking-[0.5em] uppercase text-[10px] mb-2 block">Skill_Matrix // 2024</span>
+              <span className="font-technical-sm text-[#E63946] tracking-[0.5em] uppercase text-[10px] mb-2 block">Skill_Matrix // 2024</span>
               <h2 className="text-6xl md:text-8xl font-display-xl text-white leading-none uppercase tracking-tighter">
-                TECH <br /> <span className="text-primary/40">STACK</span>
+                TECH <br /> <span className="text-[#E63946]/40">STACK</span>
               </h2>
             </motion.div>
             
-            <div className="w-16 h-16 bg-primary/5 border border-primary/20 rounded-full flex items-center justify-center text-primary backdrop-blur-md">
+            <div className="w-16 h-16 bg-[#E63946]/5 border border-[#E63946]/20 rounded-full flex items-center justify-center text-[#E63946] backdrop-blur-md">
               <Zap size={32} className="animate-pulse" />
             </div>
           </div>
           
           <div className="flex justify-between items-end">
-            <div className="max-w-xs opacity-40">
-              <p className="font-technical-sm text-slate-400 leading-relaxed uppercase text-[8px] tracking-widest">
+            <div className="max-w-xs opacity-60">
+              <p className="font-technical-sm text-white/80 leading-relaxed uppercase text-[8px] tracking-widest">
                 Scanning proficiency levels... <br />
-                Protocol: Cinematic_Blue_Mode
+                Protocol: Coffee_Crimson_Edition
               </p>
             </div>
             <div className="text-right">
-              <span className="font-technical-sm text-primary/60 text-[9px] uppercase tracking-widest">Archive_Loading...</span>
-              <div className="w-48 h-[1px] bg-white/5 mt-2">
+              <span className="font-technical-sm text-white/40 text-[9px] uppercase tracking-widest">Archive_Loading...</span>
+              <div className="w-48 h-[1px] bg-white/10 mt-2">
                 <motion.div 
-                   className="h-full bg-primary"
+                   className="h-full bg-[#E63946]"
                   style={{ width: useTransform(smoothProgress, [0, 1], ["0%", "100%"]) }}
                 />
               </div>
@@ -115,8 +115,8 @@ const LudoSkills = () => {
         </div>
 
         {/* The Board Center */}
-        <div className="relative w-[300px] h-[300px] border border-primary/20 rounded-full flex items-center justify-center z-10 bg-primary/5 backdrop-blur-md">
-          <Chip size={64} className="text-primary/10" />
+        <div className="relative w-[300px] h-[300px] border border-white/10 rounded-full flex items-center justify-center z-10 bg-white/5 backdrop-blur-md">
+          <Chip size={64} className="text-white/10" />
           
           <AnimatePresence mode="wait">
             {SKILL_GROUPS.map((group, idx) => {
@@ -135,6 +135,9 @@ const LudoSkills = () => {
             })}
           </AnimatePresence>
         </div>
+
+
+
 
         {/* Skill Pieces (Animated Balls) */}
         {SKILL_GROUPS.map((group, idx) => (
@@ -214,13 +217,13 @@ const SkillFocus = ({ group, progress, range }: { group: typeof SKILL_GROUPS[0],
       style={{ opacity, scale, y }}
       className="absolute inset-0 flex items-center justify-center z-30"
     >
-      <div className="relative group w-[80vw] max-w-2xl bg-[#0F172A]/90 backdrop-blur-3xl border border-primary/20 rounded-[2rem] p-10 md:p-12 shadow-[0_0_80px_rgba(0,0,0,0.5)]">
+      <div className="relative group w-[80vw] max-w-2xl bg-black/80 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-10 md:p-12 shadow-[0_0_80px_rgba(0,0,0,0.8)]">
         <div className="flex items-center gap-4 mb-8">
-          <div className="p-4 bg-primary/10 rounded-2xl text-primary border border-primary/20">
+          <div className="p-4 bg-white/5 rounded-2xl text-[#E63946] border border-white/10">
             {group.icon}
           </div>
           <div>
-            <span className="text-[10px] font-technical-sm text-primary uppercase tracking-[0.4em]">Matrix_Sector_0{group.id}</span>
+            <span className="text-[10px] font-technical-sm text-white/40 uppercase tracking-[0.4em]">Matrix_Sector_0{group.id}</span>
             <h3 className="text-4xl font-display-xl text-white uppercase">{group.category}</h3>
           </div>
         </div>
@@ -236,16 +239,16 @@ const SkillFocus = ({ group, progress, range }: { group: typeof SKILL_GROUPS[0],
             >
               <div className="flex justify-between items-center mb-2 px-1">
                 <span className="text-[10px] font-technical-sm text-white uppercase tracking-widest">{skill.name}</span>
-                <span className="text-[9px] font-technical-sm text-primary">{skill.level}%</span>
+                <span className="text-[9px] font-technical-sm text-[#E63946]">{skill.level}%</span>
               </div>
               <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5 relative">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${skill.level}%` }}
                   transition={{ duration: 1, delay: 0.2 + i * 0.1 }}
-                   className="h-full bg-primary relative"
+                   className="h-full bg-[#E63946] relative"
                 >
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.3)_50%,transparent_100%)] animate-[shimmer_2s_infinite]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.4)_50%,transparent_100%)] animate-[shimmer_2s_infinite]" />
                 </motion.div>
               </div>
             </motion.div>
@@ -253,11 +256,11 @@ const SkillFocus = ({ group, progress, range }: { group: typeof SKILL_GROUPS[0],
         </div>
 
         {/* HUD Elements */}
-        <div className="mt-12 flex justify-between items-center opacity-20">
-          <div className="text-[8px] font-technical-sm text-primary uppercase tracking-widest">Protocol_Active</div>
+        <div className="mt-12 flex justify-between items-center opacity-40">
+          <div className="text-[8px] font-technical-sm text-white uppercase tracking-widest">Protocol_Active</div>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="w-1 h-1 bg-primary rounded-full" />
+              <div key={i} className="w-1 h-1 bg-[#E63946] rounded-full" />
             ))}
           </div>
         </div>
@@ -265,6 +268,10 @@ const SkillFocus = ({ group, progress, range }: { group: typeof SKILL_GROUPS[0],
     </motion.div>
   );
 };
+
+
+
+
 
 
 
