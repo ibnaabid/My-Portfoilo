@@ -44,7 +44,7 @@ const CustomCursor = () => {
           x: "-50%",
           y: "-50%",
         }}
-        className="fixed w-4 h-4 bg-primary/80 rounded-full pointer-events-none z-[9999] hidden md:block shadow-[0_0_15px_#58d8df]"
+        className="fixed w-4 h-4 bg-primary/80 rounded-full pointer-events-none z-[9999] hidden md:block shadow-[0_0_15px_#F0C05A]"
       >
         <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse" />
       </motion.div>
@@ -70,11 +70,11 @@ const CustomCursor = () => {
         className="fixed pointer-events-none z-[9998] hidden md:block"
       >
         <svg viewBox="0 0 100 100" className="w-full h-full opacity-80">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="#00f2ff" strokeWidth="1.5" strokeDasharray="10 5" />
-          <circle cx="50" cy="50" r="38" fill="none" stroke="#f6c445" strokeWidth="1" strokeDasharray="5 5" />
-          <circle cx="50" cy="50" r="30" fill="none" stroke="#00f2ff" strokeWidth="0.5" strokeDasharray="2 2" />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#F0C05A" strokeWidth="1.5" strokeDasharray="10 5" />
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#7A84A9" strokeWidth="1" strokeDasharray="5 5" />
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#F0C05A" strokeWidth="0.5" strokeDasharray="2 2" />
           {isHovering && (
-            <circle cx="50" cy="50" r="48" fill="none" stroke="#e62129" strokeWidth="2" strokeDasharray="1 10" />
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#F0C05A" strokeWidth="2" strokeDasharray="1 10" />
           )}
         </svg>
       </motion.div>
@@ -92,14 +92,15 @@ const CustomCursor = () => {
           animate={{ scale: 1 }}
           className="fixed pointer-events-none z-[10000] hidden md:block"
         >
-          <div className="w-10 h-10 border border-red-500/50 rounded-sm relative">
-            <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-red-500" />
-            <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-red-500" />
-            <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-red-500" />
-            <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-red-500" />
+          <div className="w-10 h-10 border border-primary/50 rounded-sm relative">
+            <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-primary" />
+            <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-primary" />
+            <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-primary" />
+            <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-primary" />
           </div>
         </motion.div>
       )}
+
     </>
   );
 };

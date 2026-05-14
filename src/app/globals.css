@@ -3,21 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --background: #050d1f;
-  --foreground: #dfe2eb;
+  --background: #050B18;
+  --foreground: #E2E8F0;
+  --primary: #38BDF8;
+  --primary-accent: #1E293B;
 }
 
 body {
-  color: #FFFFFF;
-  background: #050d1f !important;
-  /* ← !important দাও */
+  color: var(--foreground);
+  background: #050B18 !important;
   background-image:
-    linear-gradient(rgba(33, 99, 230, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(33, 99, 230, 0.05) 1px, transparent 1px);
-  background-size: 100px 100px;
-  font-family: var(--font-inter), sans-serif;
+    linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  font-family: var(--font-outfit), var(--font-inter), sans-serif;
   position: relative;
 }
+
+
+
 
 body::before {
   content: "";

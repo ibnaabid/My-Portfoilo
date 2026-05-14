@@ -3,7 +3,6 @@ import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import ProjectHeader from "@/components/ProjectHeader";
 import VideoPlayer from "@/components/VideoPlayer";
-import AudioWaveform from "@/components/AudioWaveform";
 import ProjectDetails from "@/components/ProjectDetails";
 
 export default function ProjectPage() {
@@ -16,7 +15,6 @@ export default function ProjectPage() {
         <div className="max-w-[1440px] mx-auto">
           <ProjectHeader />
           <VideoPlayer />
-          <AudioWaveform />
           <ProjectDetails />
         </div>
       </div>

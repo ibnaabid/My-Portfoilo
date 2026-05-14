@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,6 +11,12 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
 });
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+});
+
 
 export const metadata: Metadata = {
   title: "Ibna Abid",
@@ -39,8 +45,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary antialiased cursor-none`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${outfit.variable} bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary antialiased cursor-none`}
       >
+
         <AnimatedBackground />
         <SmoothScroll>
           <CustomCursor />

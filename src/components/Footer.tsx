@@ -2,14 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Instagram, Linkedin, Twitter, Youtube, ArrowUpRight } from "lucide-react";
+import { Instagram, Linkedin, Facebook, Github, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <Instagram size={18} />, label: "Instagram", href: "#" },
+    { icon: <Instagram size={18} />, label: "Instagram", href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==" },
     { icon: <Linkedin size={18} />, label: "LinkedIn", href: "#" },
-    { icon: <Twitter size={18} />, label: "X / Twitter", href: "#" },
-    { icon: <Youtube size={18} />, label: "YouTube", href: "#" },
+    { icon: <Facebook size={18} />, label: "Facebook", href: "https://www.facebook.com/share/1Cj6eRf4U9/" },
+    { icon: <Github size={18} />, label: "GitHub", href: "https://github.com/ibnaabid" },
   ];
 
   return (

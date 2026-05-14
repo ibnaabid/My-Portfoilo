@@ -10,22 +10,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "surface-container": "#151515",
+        "surface-container": "#0F172A",
         "on-primary-container": "#FFFFFF",
-        "surface-container-highest": "#1F1F1F",
-        "secondary-container": "#2E2E2E",
-        "primary": "#819A91", // Sage Green
-        "primary-accent": "#B7A3E3", // Soft Purple
-        "sage-green": "#819A91",
-        "soft-purple": "#B7A3E3",
-        "surface": "#080808", // Deep Obsidian
-        "background": "#080808",
-        "on-background": "#FFFFFF", // Pure White Text
-        "outline": "#334155",
-        "on-surface-variant": "#94A3B8",
-        "stark-red": "#e62129",
-        "iron-gold": "#f6c445",
+        "surface-container-highest": "#1E293B",
+        "secondary-container": "#1E293B",
+        "primary": "#38BDF8", // Cyber Blue
+        "primary-accent": "#818CF8", // Indigo
+        "surface": "#050B18", 
+        "background": "#050B18",
+        "on-background": "#E2E8F0",
+
+
+        "emerald-green": "#1ABC9C",
+        "amber-gold": "#F39C12",
+        "rose-pink": "#E74C3C",
+        "indigo-blue": "#3498DB",
+        "outline": "#51588A",
       },
+
       borderRadius: {
         "DEFAULT": "0.125rem",
         "lg": "0.25rem",

@@ -35,12 +35,12 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { label: "Home", href: "/#home", id: "home", icon: <Home size={16} />, color: "#e62129", animType: "pulse" },
-    { label: "About", href: "/#about", id: "about", icon: <User size={16} />, color: "#ff4d4d", animType: "glow" },
-    { label: "Skills", href: "/#skills", id: "skills", icon: <Rocket size={16} />, color: "#cc1d24", animType: "glitch" },
-    { label: "Projects", href: "/#projects", id: "projects", icon: <Briefcase size={16} />, color: "#ff1a1a", animType: "glow" },
-    { label: "Experience", href: "/#experience", id: "experience", icon: <Briefcase size={16} />, color: "#e62129", animType: "pulse" },
-    { label: "Contact", href: "/#contact", id: "contact", icon: <Mail size={16} />, color: "#ff4d4d", animType: "ping" },
+    { label: "Home", href: "/#home", id: "home", icon: <Home size={16} />, color: "#38BDF8", animType: "pulse" },
+    { label: "About", href: "/#about", id: "about", icon: <User size={16} />, color: "#818CF8", animType: "glow" },
+    { label: "Skills", href: "/#skills", id: "skills", icon: <Rocket size={16} />, color: "#38BDF8", animType: "glitch" },
+    { label: "Projects", href: "/#projects", id: "projects", icon: <Briefcase size={16} />, color: "#818CF8", animType: "glow" },
+    { label: "Experience", href: "/#experience", id: "experience", icon: <Briefcase size={16} />, color: "#38BDF8", animType: "pulse" },
+    { label: "Contact", href: "/#contact", id: "contact", icon: <Mail size={16} />, color: "#818CF8", animType: "ping" },
   ];
 
   const isActive = (item: any) => {
@@ -168,8 +168,8 @@ const Navbar = () => {
         <motion.button
           whileHover={{
             scale: 1.05,
-            borderColor: "#e62129",
-            boxShadow: "0 0 20px rgba(230, 33, 41, 0.2)"
+            borderColor: "#38BDF8",
+            boxShadow: "0 0 20px rgba(56, 189, 248, 0.2)"
           }}
           whileTap={{ scale: 0.95 }}
           className="ml-4 px-8 py-2.5 bg-black border border-white/20 text-white font-bold text-[11px] tracking-widest uppercase rounded-full transition-all flex items-center gap-2 group"
@@ -177,6 +177,9 @@ const Navbar = () => {
           <span className="group-hover:text-primary transition-colors">Hire Me</span>
           <Rocket size={14} className="group-hover:text-primary transition-colors" />
         </motion.button>
+
+
+
 
         {/* Mobile Menu Trigger */}
         <button
