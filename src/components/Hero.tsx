@@ -95,16 +95,15 @@ const Hero = () => {
               >
                 Get In Touch
               </motion.button>
-              <motion.button
+              <motion.a
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
                 className="px-10 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center"
-                type="button"
-                onClick={() => {
-                  window.location.href = "file:///E:/MdIbna%20Abid%20resume.pdf";
-                }}
+                href="/darker_maroon_abid_resume.pdf"
+                target="_blank"
+                rel="noreferrer"
               >
                 Download CV
-              </motion.button>
+              </motion.a>
             </div>
 
 
@@ -118,7 +117,6 @@ const Hero = () => {
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="relative w-72 h-72 md:w-[450px] md:h-[450px] group"
           >
-            {/* Bubbling Photo Container */}
 
             <motion.div
               animate={{
