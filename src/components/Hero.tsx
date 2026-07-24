@@ -11,7 +11,7 @@ const Hero = () => {
 
   const socialLinks = [
     { icon: <Github size={20} />, href: "https://github.com/ibnaabid", label: "GitHub" },
-    { icon: <Linkedin size={20} />, href: "#", label: "LinkedIn" },
+    { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/mdibnaabid", label: "LinkedIn" },
     { icon: <Facebook size={20} />, href: "https://www.facebook.com/share/1Cj6eRf4U9/", label: "Facebook" },
     { icon: <Instagram size={20} />, href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==", label: "Instagram" },
   ];
@@ -94,6 +94,16 @@ const Hero = () => {
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Get In Touch
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                className="px-10 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center"
+                type="button"
+                onClick={() => {
+                  window.location.href = "file:///E:/MdIbna%20Abid%20resume.pdf";
+                }}
+              >
+                Download CV
               </motion.button>
             </div>
 

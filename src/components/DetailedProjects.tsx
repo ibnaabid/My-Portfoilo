@@ -7,83 +7,63 @@ import { ExternalLink, Github, CheckCircle2, Layers, Cpu, Globe } from "lucide-r
 const PROJECTS = [
   {
     id: "01",
-    title: "JACKFRUIT_PROJECT",
-    category: "Full Stack Platform",
-    description: "A comprehensive digital ecosystem for fruit supply chain management and consumer connectivity, built with the MERN stack.",
+    title: "FOODIEZONE",
+    category: "Restaurant Web App",
+    description: "A modern restaurant experience built for food ordering, menu browsing, and brand storytelling.",
     images: [
-      "https://images.unsplash.com/photo-1595009552535-be753447727e?q=80&w=2940&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?q=80&w=2940&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?q=80&w=2940&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2940&auto=format&fit=crop"
     ],
-    techStack: ["React", "Next.js", "TailwindCSS", "Node.js", "MongoDB"],
+    techStack: ["Next.js", "TailwindCSS", "React", "Node.js"],
     features: [
-      "Dynamic inventory tracking system",
-      "Real-time order management dashboard",
-      "Secure payment integration (SSLCommerz)",
-      "Responsive mobile-first user experience"
+      "Responsive menu showcase",
+      "Online order flow",
+      "Modern restaurant branding",
+      "Mobile-friendly UX"
     ],
-    liveLink: "https://a08-jackfruit-project.vercel.app",
-    githubLink: "https://github.com/ibnaabid/A08-jackfruit-project",
-    color: "#e62129"
+    liveLink: "https://foodiezone-nu.vercel.app/",
+    githubLink: "#",
+    color: "#f97316"
   },
   {
     id: "02",
-    title: "KEEN_KEEPER",
-    category: "Task Management System",
-    description: "A high-fidelity task and note-taking application designed for organized productivity and secure data storage using BetterAuth.",
+    title: "B13_HOUSE_RENT",
+    category: "House Rental Platform",
+    description: "A clean house rental interface with property listings, booking details, and user-friendly search experience.",
     images: [
-      "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2940&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=2940&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2940&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2940&auto=format&fit=crop"
     ],
-    techStack: ["Next.js", "BetterAuth", "Prisma", "PostgreSQL", "Tailwind"],
+    techStack: ["React", "JavaScript", "CSS", "Webflow"],
     features: [
-      "Secure authentication with BetterAuth",
-      "Real-time task synchronization",
-      "Cloud-based persistent storage",
-      "Advanced categorization and labeling"
+      "Property listing previews",
+      "Booking-ready layout",
+      "Clean rental dashboard",
+      "Fast browsing experience"
     ],
-    liveLink: "https://keen-keeper-a07-chi.vercel.app",
-    githubLink: "https://github.com/ibnaabid/Keen-keeper",
-    color: "#ff4d4d"
+    liveLink: "https://b-13-a10-house-rent.vercel.app/",
+    githubLink: "#",
+    color: "#0ea5e9"
   },
   {
     id: "03",
-    title: "ENGLISH_JANALA",
-    category: "E-Learning Platform",
-    description: "An interactive web application for learning English, featuring comprehensive modules and responsive lesson displays.",
+    title: "B13_SPORT",
+    category: "Sports Project",
+    description: "A dynamic sports portal for event highlights, team features, and an engaging athletic showcase.",
     images: [
-      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=2940&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=2940&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2940&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517649763987-4c6d7ae3d36b?q=80&w=2940&auto=format&fit=crop"
     ],
-    techStack: ["HTML5", "CSS3", "JavaScript", "GitHub Pages"],
+    techStack: ["Next.js", "TailwindCSS", "React", "API Integration"],
     features: [
-      "Interactive lesson modules",
-      "Course progress visualization",
-      "Responsive curriculum display",
-      "Optimized for performance and speed"
+      "Sports event lineup",
+      "Team and player highlights",
+      "Responsive game-themed UI",
+      "Fast loading interactions"
     ],
-    liveLink: "https://ibnaabid.github.io/english-janala-web/",
-    githubLink: "https://github.com/ibnaabid/english-janala-web",
-    color: "#cc1d24"
-  },
-  {
-    id: "04",
-    title: "GITHUB-ISSUE-TRACKER",
-    category: "FinTech Interface",
-    description: "A secure and intuitive mobile banking interface concept focusing on user transaction flows and modern UI/UX.",
-    images: [
-      "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2940&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1550565118-3a14e8d0386f?q=80&w=2940&auto=format&fit=crop"
-    ],
-    techStack: ["React", "JavaScript", "html", "CSS3"],
-    features: [
-      "Secure transaction monitoring",
-      "Real-time countdown",
-      "User-friendly financial project"
-
-    ],
-    liveLink: "https://githubtracker22.netlify.app/",
-    githubLink: "https://github.com/ibnaabid/A-06-digitool.git",
-    color: "#ff1a1a"
+    liveLink: "https://b-13-sport.vercel.app/",
+    githubLink: "#",
+    color: "#22c55e"
   }
 ];
 

@@ -7,7 +7,7 @@ import { Instagram, Linkedin, Facebook, Github, ArrowUpRight } from "lucide-reac
 const Footer = () => {
   const socialLinks = [
     { icon: <Instagram size={18} />, label: "Instagram", href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==" },
-    { icon: <Linkedin size={18} />, label: "LinkedIn", href: "#" },
+    { icon: <Linkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/mdibnaabid" },
     { icon: <Facebook size={18} />, label: "Facebook", href: "https://www.facebook.com/share/1Cj6eRf4U9/" },
     { icon: <Github size={18} />, label: "GitHub", href: "https://github.com/ibnaabid" },
   ];
@@ -52,7 +52,7 @@ const Footer = () => {
               DINAJPUR_POLYTECHNIC<br />
               DINAJPUR // BANGLADESH
             </div>
-            <a href="mailto:hi@abid.dev" className="flex items-center space-x-2 text-primary text-xs font-technical-sm group">
+            <a href="mailto:mdibnaabid123@gmail.com" className="flex items-center space-x-2 text-primary text-xs font-technical-sm group">
               <span>mdibnaabid123@gmail.com</span>
               <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>

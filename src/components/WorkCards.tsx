@@ -25,16 +25,16 @@ export const HeroFeatureCard = () => (
     <div className="absolute bottom-0 left-0 w-full p-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
       <div>
         <div className="flex items-center space-x-3 mb-2">
-          <span className="px-2 py-0.5 border border-white/20 text-[8px] font-label-caps text-white/60">DIRECTOR'S CUT</span>
-          <span className="px-2 py-0.5 border border-primary/40 text-[8px] font-label-caps text-primary">8K_RAW</span>
+          <span className="px-2 py-0.5 border border-white/20 text-[8px] font-label-caps text-white/60">DESIGN SYSTEM</span>
+          <span className="px-2 py-0.5 border border-primary/40 text-[8px] font-label-caps text-primary">INTERACTIVE</span>
         </div>
-        <h3 className="font-headline-lg text-white mb-2 text-3xl">NEON_FRONTIER</h3>
-        <p className="font-body-md text-slate-300 max-w-lg">An exploratory journey into the intersection of light-speed travel and sentient architecture.</p>
+        <h3 className="font-headline-lg text-white mb-2 text-3xl">AURORA_FLOW</h3>
+        <p className="font-body-md text-slate-300 max-w-lg">A polished production UI system engineered for immersive brand experiences and fluid motion design.</p>
       </div>
       <div className="flex items-center space-x-4">
         <div className="flex flex-col items-end">
           <span className="font-label-caps text-[9px] text-white/40">RUNTIME</span>
-          <span className="font-technical-sm text-primary">00:14:22:04</span>
+          <span className="font-technical-sm text-primary">00:05:48:12</span>
         </div>
         <Link href="/project/neon-drift">
           <motion.button
@@ -93,7 +93,23 @@ export const MetaCard = () => (
   </motion.div>
 );
 
-export const WorkGridCard = ({ title, sub, img, delay = 0 }: { title: string, sub: string, img: string, delay?: number }) => (
+export const WorkGridCard = ({
+  title,
+  sub,
+  img,
+  delay = 0,
+  frontendRepo,
+  backendRepo,
+  onRepoClick,
+}: {
+  title: string;
+  sub: string;
+  img: string;
+  delay?: number;
+  frontendRepo?: string;
+  backendRepo?: string;
+  onRepoClick?: () => void;
+}) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -112,6 +128,15 @@ export const WorkGridCard = ({ title, sub, img, delay = 0 }: { title: string, su
       <span className="font-technical-sm text-slate-500 text-xs">{sub}</span>
       <span className="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">arrow_outward</span>
     </div>
+    {frontendRepo && backendRepo && onRepoClick ? (
+      <button
+        type="button"
+        onClick={onRepoClick}
+        className="mt-4 inline-flex items-center justify-center rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs uppercase tracking-[0.24em] text-primary transition hover:bg-primary/10"
+      >
+        View Source Repos
+      </button>
+    ) : null}
   </motion.div>
 );
 

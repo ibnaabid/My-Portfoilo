@@ -1,10 +1,44 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import WorksHeader from "@/components/WorksHeader";
-import { HeroFeatureCard, MetaCard, WorkGridCard, UploadCard } from "@/components/WorkCards";
+import { HeroFeatureCard, MetaCard, WorkGridCard } from "@/components/WorkCards";
+
+const workProjects = [
+  {
+    title: "FOODIEZONE",
+    sub: "FOOD RESTAURANT PROJECT // NEXT.JS",
+    img: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?q=80&w=1920&auto=format&fit=crop",
+    delay: 0.2,
+    frontendRepo: "https://github.com/ibnaabid/Foodiezone",
+    backendRepo: "https://github.com/ibnaabid/FoodieZone-Backend",
+  },
+  {
+    title: "B13_HOUSE_RENT",
+    sub: "HOUSE RENT PLATFORM // PROPERTY UX",
+    img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1920&auto=format&fit=crop",
+    delay: 0.4,
+    frontendRepo: "https://github.com/ibnaabid/B-13--A10--house-rent",
+    backendRepo: "https://github.com/ibnaabid/A10--008-cat-backend",
+  },
+  {
+    title: "B13_SPORT",
+    sub: "SPORTS PORTAL // TRAINING & EVENTS",
+    img: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1920&auto=format&fit=crop",
+    delay: 0.6,
+  },
+];
 
 export default function WorksPage() {
+  const [activeRepo, setActiveRepo] = useState<{
+    title: string;
+    frontendRepo: string;
+    backendRepo: string;
+  } | null>(null);
+
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -16,21 +50,62 @@ export default function WorksPage() {
         <div className="grid grid-cols-12 gap-6">
           <HeroFeatureCard />
           <MetaCard />
-          <WorkGridCard 
-            title="CHROMATIC_DENSITY" 
-            sub="POST_PRODUCTION // GRADED" 
-            img="https://lh3.googleusercontent.com/aida/ADBb0uhzb8zZmDDtjMX-CeC29KjYrCJlQ-WrdHTJDW8207L1lJ3iWoViV7NweHoZCqcVTK41u1dkAxvNU9EUnLaX54cNDscM_54sNqftsaislnHYTy1wyf1lVRrUMeT39-CVEsf68D6trANgE74JLozQHAwiFMrmAU_ap8kWpnnvuPbiWP7jM9cufWAVTexzuZDOYdQ6fj5yyq5CFVI900uxPpju8PPdk4V7h7j1orsCHlyc9qWWps3qAjHWiz0yWdNTjaU39YY692rthVQ"
-            delay={0.2}
-          />
-          <UploadCard />
-          <WorkGridCard 
-            title="LENS_METRICS_04" 
-            sub="ANAMORPHIC_TEST // 2.39:1" 
-            img="https://lh3.googleusercontent.com/aida/ADBb0uhzb8zZmDDtjMX-CeC29KjYrCJlQ-WrdHTJDW8207L1lJ3iWoViV7NweHoZCqcVTK41u1dkAxvNU9EUnLaX54cNDscM_54sNqftsaislnHYTy1wyf1lVRrUMeT39-CVEsf68D6trANgE74JLozQHAwiFMrmAU_ap8kWpnnvuPbiWP7jM9cufWAVTexzuZDOYdQ6fj5yyq5CFVI900uxPpju8PPdk4V7h7j1orsCHlyc9qWWps3qAjHWiz0yWdNTjaU39YY692rthVQ"
-            delay={0.6}
-          />
+          {workProjects.map((project) => (
+            <WorkGridCard
+              key={project.title}
+              title={project.title}
+              sub={project.sub}
+              img={project.img}
+              delay={project.delay}
+              frontendRepo={project.frontendRepo}
+              backendRepo={project.backendRepo}
+              onRepoClick={project.frontendRepo && project.backendRepo ? () => setActiveRepo(project as any) : undefined}
+            />
+          ))}
         </div>
       </div>
+
+      {activeRepo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-8">
+          <div className="relative w-full max-w-xl rounded-[2rem] border border-white/10 bg-slate-950 p-8 shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setActiveRepo(null)}
+              className="absolute right-5 top-5 text-slate-400 hover:text-white"
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.4em] text-primary">SOURCE REPOSITORIES</p>
+                <h2 className="text-3xl font-bold text-white mt-2">{activeRepo.title}</h2>
+                <p className="text-slate-400">Frontend and backend repository links for this project.</p>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <a
+                  href={activeRepo.frontendRepo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-3xl border border-white/10 bg-white/5 p-6 text-left transition hover:border-primary hover:bg-primary/10"
+                >
+                  <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Frontend Repo</p>
+                  <p className="font-semibold text-white break-all">{activeRepo.frontendRepo}</p>
+                </a>
+                <a
+                  href={activeRepo.backendRepo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-3xl border border-white/10 bg-white/5 p-6 text-left transition hover:border-primary hover:bg-primary/10"
+                >
+                  <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Backend Repo</p>
+                  <p className="font-semibold text-white break-all">{activeRepo.backendRepo}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </main>
