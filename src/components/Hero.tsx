@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Rocket, Github, Linkedin, Facebook, Instagram } from "lucide-react";
 
@@ -95,15 +96,15 @@ const Hero = () => {
               >
                 Get In Touch
               </motion.button>
-              <motion.a
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                className="px-10 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center"
+              <Link 
+                // ={{ scale: 1.05, " }}
+                className="px-10 py-4 bg-white/5 backgroundColor: rgba(255, 255, 255, 0.1) backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center"
                 href="file:///E:/MdIbna%20Abid%20resume.pdf"
                 target="_blank"
                 rel="noreferrer"
               >
                 Download CV
-              </motion.a>
+              </Link>
             </div>
 
 
@@ -149,7 +150,7 @@ const Hero = () => {
                 
                 {/* Floating HUD inside the bubble */}
                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2 font-mono text-[9px] text-primary bg-black/40 px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  USER_ID: ABID_2024
+                 ABID
                 </div>
               </motion.div>
             </motion.div>
