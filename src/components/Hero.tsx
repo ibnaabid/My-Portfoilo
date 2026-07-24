@@ -10,10 +10,10 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   const socialLinks = [
-    { icon: <Github size={20} />, href: "https://github.com/ibnaabid", label: "GitHub" },
-    { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/mdibnaabid", label: "LinkedIn" },
-    { icon: <Facebook size={20} />, href: "https://www.facebook.com/share/1Cj6eRf4U9/", label: "Facebook" },
-    { icon: <Instagram size={20} />, href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==", label: "Instagram" },
+    { icon: <Github size={20} />, href: "https://github.com/ibnaabid", label: "GitHub", hoverColor: "#38BDF8" },
+    { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/mdibnaabid", label: "LinkedIn", hoverColor: "#0A66C2" },
+    { icon: <Facebook size={20} />, href: "https://www.facebook.com/share/1Cj6eRf4U9/", label: "Facebook", hoverColor: "#1877F2" },
+    { icon: <Instagram size={20} />, href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==", label: "Instagram", hoverColor: "#E1306C" },
   ];
 
   return (
@@ -70,8 +70,8 @@ const Hero = () => {
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  whileHover={{ scale: 1.2, color: "var(--primary)" }}
-                  className="text-slate-500 hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.2, color: link.hoverColor, y: -2 }}
+                  className="text-slate-500 transition-colors duration-300"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -98,7 +98,7 @@ const Hero = () => {
               <motion.a
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
                 className="px-10 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center"
-                href="/darker_maroon_abid_resume.pdf"
+                href="file:///E:/MdIbna%20Abid%20resume.pdf"
                 target="_blank"
                 rel="noreferrer"
               >

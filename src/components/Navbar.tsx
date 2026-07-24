@@ -108,6 +108,15 @@ const Navbar = () => {
     );
   };
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    window.location.href = "/#contact";
+  };
+
   return (
     <div className="fixed top-6 left-0 right-0 z-[100] px-6 pointer-events-none">
       <motion.nav
@@ -166,6 +175,8 @@ const Navbar = () => {
 
         {/* Right Side: CTA Button */}
         <motion.button
+          type="button"
+          onClick={scrollToContact}
           whileHover={{
             scale: 1.05,
             borderColor: "#38BDF8",
@@ -219,7 +230,14 @@ const Navbar = () => {
                 </motion.div>
               </Link>
             ))}
-            <button className="w-full mt-4 py-5 bg-gradient-to-r from-primary to-primary-accent text-white font-bold uppercase tracking-widest rounded-xl">
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                scrollToContact();
+              }}
+              className="w-full mt-4 py-5 bg-gradient-to-r from-primary to-primary-accent text-white font-bold uppercase tracking-widest rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30"
+            >
               Hire Me
             </button>
           </motion.div>

@@ -6,10 +6,10 @@ import { Instagram, Linkedin, Facebook, Github, ArrowUpRight } from "lucide-reac
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <Instagram size={18} />, label: "Instagram", href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==" },
-    { icon: <Linkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/mdibnaabid" },
-    { icon: <Facebook size={18} />, label: "Facebook", href: "https://www.facebook.com/share/1Cj6eRf4U9/" },
-    { icon: <Github size={18} />, label: "GitHub", href: "https://github.com/ibnaabid" },
+    { icon: <Instagram size={18} />, label: "Instagram", href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==", hoverColor: "#E1306C" },
+    { icon: <Linkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/mdibnaabid", hoverColor: "#0A66C2" },
+    { icon: <Facebook size={18} />, label: "Facebook", href: "https://www.facebook.com/share/1Cj6eRf4U9/", hoverColor: "#1877F2" },
+    { icon: <Github size={18} />, label: "GitHub", href: "https://github.com/ibnaabid", hoverColor: "#38BDF8" },
   ];
 
   return (
@@ -67,8 +67,8 @@ const Footer = () => {
               <motion.a
                 key={social.label}
                 href={social.href}
-                whileHover={{ scale: 1.1, color: "#58d8df", borderColor: "#58d8df" }}
-                className="w-10 h-10 border border-white/10 flex items-center justify-center text-slate-500 rounded-sm transition-colors"
+                whileHover={{ scale: 1.1, color: social.hoverColor, borderColor: social.hoverColor }}
+                className="w-10 h-10 border border-white/10 flex items-center justify-center text-slate-500 rounded-sm transition-colors duration-300"
               >
                 {social.icon}
               </motion.a>

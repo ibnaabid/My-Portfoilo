@@ -10,7 +10,6 @@ const AnimatedBackground = () => {
       {/* Pure Dark Base */}
       <div className="absolute inset-0 bg-[#2C3639]" />
 
-      {/* Top Left — Tan Glow */}
       <motion.div
         animate={{
           scale: [1, 1.2, 1],
