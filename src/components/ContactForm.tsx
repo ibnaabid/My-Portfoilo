@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -12,8 +12,22 @@ const ContactForm = () => {
     setFormData((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
+  const buildMailtoLink = (data: typeof formData) => {
+    const recipient = "mdibnaabid123@gmail.com";
+    const subject = encodeURIComponent(data.subject.trim() || "Portfolio contact request");
+    const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`);
+    return `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setStatus("error");
+      setError("Please fill in your name, email, and message.");
+      return;
+    }
+
     setStatus("sending");
     setError(null);
 
@@ -29,8 +43,12 @@ const ContactForm = () => {
         throw new Error(result.error || "Failed to send message.");
       }
 
+      if (result?.fallbackToMailto && result?.mailto) {
+        window.location.href = result.mailto;
+      }
+
       setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (err: any) {
       setStatus("error");
       setError(err.message || "Unable to send message.");
@@ -55,10 +73,10 @@ const ContactForm = () => {
         <form className="space-y-10" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative group/input">
-              <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">OPERATOR_ID</label>
+              <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">YOUR_NAME</label>
               <input 
                 className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2" 
-                placeholder="IDENTIFY" 
+                placeholder="ENTER YOUR NAME" 
                 type="text" 
                 value={formData.name}
                 onChange={handleChange("name")}
@@ -66,10 +84,10 @@ const ContactForm = () => {
               <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-all duration-500"></div>
             </div>
             <div className="relative group/input">
-              <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">UPLINK_ADDR</label>
+              <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">YOUR_EMAIL</label>
               <input 
                 className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2" 
-                placeholder="EMAIL" 
+                placeholder="ENTER YOUR EMAIL" 
                 type="email" 
                 value={formData.email}
                 onChange={handleChange("email")}
@@ -79,10 +97,22 @@ const ContactForm = () => {
           </div>
 
           <div className="relative group/input">
-            <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">DATA_PAYLOAD</label>
+            <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">SUBJECT</label>
+            <input 
+              className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2" 
+              placeholder="WHAT IS THIS ABOUT?" 
+              type="text" 
+              value={formData.subject}
+              onChange={handleChange("subject")}
+            />
+            <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-all duration-500"></div>
+          </div>
+
+          <div className="relative group/input">
+            <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">YOUR_MESSAGE</label>
             <textarea 
               className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2 resize-none" 
-              placeholder="TRANSMIT_MESSAGE..." 
+              placeholder="TYPE YOUR MESSAGE..." 
               rows={4}
               value={formData.message}
               onChange={handleChange("message")}
@@ -110,7 +140,7 @@ const ContactForm = () => {
           </motion.button>
         </form>
         {status === "success" && (
-          <div className="mt-6 text-emerald-300 text-sm">Message sent successfully. I will contact you soon.</div>
+          <div className="mt-6 text-emerald-300 text-sm">Your message is ready to send. Your email app should open with the details filled in.</div>
         )}
         {status === "error" && (
           <div className="mt-6 text-rose-300 text-sm">{error || "Failed to send message."}</div>

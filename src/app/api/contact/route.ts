@@ -27,11 +27,22 @@ async function createTransport() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, subject, message } = body;
 
     if (!name || !email || !message) {
-      return new Response(JSON.stringify({ error: "Please fill in all required fields." }), {
+      return new Response(JSON.stringify({ error: "Please fill in your name, email, and message." }), {
         status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const normalizedSubject = (subject || "Portfolio contact request").trim();
+    const mailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    const mailto = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(normalizedSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+    if (!SMTP_USER || !SMTP_PASS) {
+      return new Response(JSON.stringify({ success: true, fallbackToMailto: true, mailto }), {
+        status: 200,
         headers: { "Content-Type": "application/json" },
       });
     }
@@ -40,9 +51,9 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: EMAIL_FROM,
       to: EMAIL_TO,
-      subject: `New contact request from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
-      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong></p><p>${message.replace(/\n/g, "<br />")}</p>`,
+      subject: normalizedSubject,
+      text: mailBody,
+      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Subject:</strong> ${normalizedSubject}</p><p><strong>Message:</strong></p><p>${message.replace(/\n/g, "<br />")}</p>`,
     });
 
     return new Response(JSON.stringify({ success: true }), {

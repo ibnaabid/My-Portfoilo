@@ -89,6 +89,7 @@ const Hero = () => {
               >
                 Explore Works
               </motion.button>
+
               <motion.button
                 whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)", scale: 1.05 }}
                 className="px-10 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all"
@@ -96,29 +97,26 @@ const Hero = () => {
               >
                 Get In Touch
               </motion.button>
+
+              {/* ✅ Fixed CV Download Button */}
               <Link 
-                // ={{ scale: 1.05, " }}
-                className="px-10 py-4 bg-white/5 backgroundColor: rgba(255, 255, 255, 0.1) backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center"
-                href="file:///E:/MdIbna%20Abid%20resume.pdf"
+                href="/MdIbna Abid resume.pdf"          // ← এখানে সঠিক পাথ
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                className="px-10 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full tracking-widest uppercase text-xs transition-all flex items-center justify-center hover:bg-white/10"
               >
                 Download CV
               </Link>
             </div>
-
-
-
           </motion.div>
 
-          {/* Right Side: Photo */}
+          {/* Right Side: Photo (আগের মতোই রাখলাম) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="relative w-72 h-72 md:w-[450px] md:h-[450px] group"
           >
-
             <motion.div
               animate={{
                 borderRadius: [
@@ -127,36 +125,20 @@ const Hero = () => {
                   "60% 40% 30% 70% / 60% 30% 70% 40%"
                 ],
               }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               className="relative w-full h-full overflow-hidden border-2 border-primary/30 shadow-[0_0_40px_rgba(56,189,248,0.2)] bg-slate-900 group cursor-pointer"
             >
-              {/* 3D Tilt Wrapper inside the bubble */}
-              <motion.div 
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="w-full h-full"
-              >
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="w-full h-full">
                 <img
                   src="/978615f4-16e6-4983-ac9b-ee4d0522f928.jpg"
                   alt="Abid"
                   className="w-full h-full object-cover"
                 />
-                
-                {/* Overlay: Coding Vibe / Matrix Effect */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent opacity-60 group-hover:opacity-20 transition-opacity"></div>
-                
-                {/* Floating HUD inside the bubble */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 font-mono text-[9px] text-primary bg-black/40 px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                 ABID
-                </div>
               </motion.div>
             </motion.div>
 
-
-            {/* Animated Floating Badges */}
+            {/* Floating Badge */}
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -171,7 +153,6 @@ const Hero = () => {
               </div>
             </motion.div>
           </motion.div>
-
         </div>
       </div>
     </section>
