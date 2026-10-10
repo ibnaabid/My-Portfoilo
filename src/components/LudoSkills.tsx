@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { Zap, Code2, Database, Cpu as Chip } from "lucide-react";
 
 const SKILL_GROUPS = [
@@ -17,7 +17,6 @@ const SKILL_GROUPS = [
       { name: "Next.js", level: 90, color: "#E5E7EB" }
     ],
     icon: <Code2 size={24} />,
-    color: "#F0C05A", // Gold
   },
   {
     id: "02",
@@ -32,7 +31,6 @@ const SKILL_GROUPS = [
       { name: "Server Actions", level: 82, color: "#E67E22" }
     ],
     icon: <Database size={24} />,
-    color: "#7A84A9", // Soft Blue
   },
   {
     id: "03",
@@ -44,11 +42,23 @@ const SKILL_GROUPS = [
       { name: "VS Code", level: 94, color: "#007ACC" }
     ],
     icon: <Chip size={24} />,
-    color: "#E67E22", // Accent Orange
   },
 ];
 
-const SKILL_COLORS = SKILL_GROUPS.flatMap((group) => group.skills.map((skill) => skill.color));
+const ORBIT_SKILL_NAMES = ["HTML5", "CSS3", "JavaScript", "React", "Next.js", "Node.js", "MongoDB", "GitHub"];
+const ORBIT_POSITIONS = [
+  { top: "4%", left: "50%" },
+  { top: "17%", left: "83%" },
+  { top: "50%", left: "96%" },
+  { top: "83%", left: "83%" },
+  { top: "96%", left: "50%" },
+  { top: "83%", left: "17%" },
+  { top: "50%", left: "4%" },
+  { top: "17%", left: "17%" },
+];
+const ORBIT_SKILLS = SKILL_GROUPS
+  .flatMap((group) => group.skills)
+  .filter((skill) => ORBIT_SKILL_NAMES.includes(skill.name));
 
 const LudoSkills = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -115,23 +125,35 @@ const LudoSkills = () => {
           </div>
         </div>
 
-        <div className="absolute top-1/2 left-1/2 w-[min(88vw,360px)] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 pointer-events-none z-20">
+        <div className="absolute top-1/2 left-1/2 w-[min(92vw,820px)] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 pointer-events-none z-20">
           <motion.div
             animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 rounded-full"
+            transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
           >
-            <motion.div
-              animate={shouldReduceMotion ? undefined : { backgroundColor: SKILL_COLORS }}
-              transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-              style={{ backgroundColor: SKILL_COLORS[0] }}
-              className="absolute -top-5 left-1/2 z-40 flex h-10 w-10 -translate-x-1/2 items-center justify-center overflow-hidden rounded-full border-2 border-white/80 shadow-[0_0_22px_rgba(255,255,255,0.3)]"
-            >
-              <div className="absolute inset-1 rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.9),transparent_45%)]" />
-              <svg viewBox="0 0 40 40" aria-hidden="true" className="relative h-7 w-7 opacity-80">
-                <path d="M10 4 C25 12 25 28 10 36 M30 4 C15 12 15 28 30 36" fill="none" stroke="white" strokeWidth="1.5" strokeDasharray="2 2" />
-              </svg>
-            </motion.div>
+            {ORBIT_SKILLS.map((skill, index) => (
+              <div
+                key={skill.name}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={ORBIT_POSITIONS[index]}
+              >
+                <motion.div
+                  animate={shouldReduceMotion ? undefined : { rotate: -360 }}
+                  transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/60 p-1 md:h-14 md:w-14"
+                  style={{
+                    background: `radial-gradient(circle at 30% 25%, white 0%, ${skill.color} 35%, ${skill.color}99 100%)`,
+                    boxShadow: `0 0 24px ${skill.color}66`,
+                  }}
+                  title={skill.name}
+                  aria-label={`${skill.name} skill bubble`}
+                >
+                  <span className="text-[9px] font-bold tracking-tight text-slate-950 md:text-[10px]">
+                    {skill.name === "JavaScript" ? "JS" : skill.name === "HTML5" ? "HTML" : skill.name === "CSS3" ? "CSS" : skill.name === "MongoDB" ? "DB" : skill.name.slice(0, 2).toUpperCase()}
+                  </span>
+                </motion.div>
+              </div>
+            ))}
           </motion.div>
         </div>
 
@@ -139,22 +161,20 @@ const LudoSkills = () => {
         <div className="relative w-[300px] h-[300px] border border-white/10 rounded-full flex items-center justify-center z-10 bg-white/5 backdrop-blur-md">
           <Chip size={64} className="text-white/10" />
           
-          <AnimatePresence mode="wait">
-            {SKILL_GROUPS.map((group, idx) => {
-              const segment = 1 / SKILL_GROUPS.length;
-              const start = idx * segment;
-              const end = (idx + 1) * segment;
-              
-              return (
-                <SkillFocus 
-                  key={group.id} 
-                  group={group} 
-                  progress={smoothProgress} 
-                  range={[start + 0.1, end]} 
-                />
-              );
-            })}
-          </AnimatePresence>
+          {SKILL_GROUPS.map((group, idx) => {
+            const segment = 1 / SKILL_GROUPS.length;
+            const start = idx * segment;
+            const end = (idx + 1) * segment;
+
+            return (
+              <SkillFocus
+                key={group.id}
+                group={group}
+                progress={smoothProgress}
+                range={[start + 0.1, end]}
+              />
+            );
+          })}
         </div>
 
 
@@ -172,7 +192,7 @@ const SkillFocus = ({ group, progress, range }: { group: typeof SKILL_GROUPS[0],
 
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
-    const unsubscribe = progress.onChange((v: number) => {
+    const unsubscribe = progress.on("change", (v: number) => {
       setIsVisible(v >= range[0] && v <= range[1]);
     });
     return () => unsubscribe();

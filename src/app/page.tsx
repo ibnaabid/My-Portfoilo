@@ -31,13 +31,11 @@ export default function Home() {
             <Navbar />
             <Sidebar />
             <div className="ml-0 lg:ml-20">
-              <div id="home"><Hero /></div>
-              <div id="about">
-                <About />
-              </div>
+              <Hero />
+              <About />
               <Stats />
-              <div id="skills"><LudoSkills /></div>
-              <div id="projects"><DetailedProjects /></div>
+              <LudoSkills />
+              <DetailedProjects />
               <div id="experience"><Experience /></div>
               <div id="contact" className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto">
                 <ContactForm />
@@ -50,4 +48,3 @@ export default function Home() {
     </main>
   );
 }
-
