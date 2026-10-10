@@ -30,6 +30,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import { MotionConfig } from "framer-motion";
 
 export default function RootLayout({
   children,
@@ -48,12 +49,14 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} ${outfit.variable} bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary antialiased cursor-none`}
       >
 
-        <AnimatedBackground />
-        <SmoothScroll>
-          <CustomCursor />
-          <ScrollProgress />
-          {children}
-        </SmoothScroll>
+        <MotionConfig reducedMotion="user">
+          <AnimatedBackground />
+          <SmoothScroll>
+            <CustomCursor />
+            <ScrollProgress />
+            {children}
+          </SmoothScroll>
+        </MotionConfig>
       </body>
     </html>
   );

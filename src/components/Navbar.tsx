@@ -35,12 +35,12 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { label: "Home", href: "/#home", id: "home", icon: <Home size={16} />, color: "#38BDF8", animType: "pulse" },
-    { label: "About", href: "/#about", id: "about", icon: <User size={16} />, color: "#818CF8", animType: "glow" },
-    { label: "Skills", href: "/#skills", id: "skills", icon: <Rocket size={16} />, color: "#38BDF8", animType: "glitch" },
-    { label: "Projects", href: "/#projects", id: "projects", icon: <Briefcase size={16} />, color: "#818CF8", animType: "glow" },
-    { label: "Experience", href: "/#experience", id: "experience", icon: <Briefcase size={16} />, color: "#38BDF8", animType: "pulse" },
-    { label: "Contact", href: "/#contact", id: "contact", icon: <Mail size={16} />, color: "#818CF8", animType: "ping" },
+    { label: "Home", href: "/#home", id: "home", icon: <Home size={16} />, color: "#38BDF8" },
+    { label: "About", href: "/#about", id: "about", icon: <User size={16} />, color: "#818CF8" },
+    { label: "Skills", href: "/#skills", id: "skills", icon: <Rocket size={16} />, color: "#38BDF8" },
+    { label: "Projects", href: "/#projects", id: "projects", icon: <Briefcase size={16} />, color: "#818CF8" },
+    { label: "Experience", href: "/#experience", id: "experience", icon: <Briefcase size={16} />, color: "#38BDF8" },
+    { label: "Contact", href: "/#contact", id: "contact", icon: <Mail size={16} />, color: "#818CF8" },
   ];
 
   const isActive = (item: any) => {
@@ -60,50 +60,6 @@ const Navbar = () => {
         }}
         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
       >
-        {/* Unique Internal Animations */}
-        {item.animType === "pulse" && (
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 bg-white rounded-full"
-          />
-        )}
-
-        {item.animType === "glitch" && (
-          <motion.div
-            animate={{
-              x: ["-100%", "100%"],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
-          />
-        )}
-
-        {item.animType === "glow" && (
-          <motion.div
-            animate={{
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent"
-          />
-        )}
-
-        {item.animType === "ping" && (
-          <motion.div
-            animate={{
-              scale: [1, 1.5],
-              opacity: [0.5, 0],
-            }}
-            transition={{ duration: 1, repeat: Infinity, ease: "easeOut" }}
-            className="absolute inset-0 border-2 rounded-full"
-            style={{ borderColor: item.color }}
-          />
-        )}
       </motion.div>
     );
   };
@@ -120,8 +76,8 @@ const Navbar = () => {
   return (
     <div className="fixed top-6 left-0 right-0 z-[100] px-6 pointer-events-none">
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         className={`max-w-fit mx-auto flex items-center gap-2 p-2 rounded-full border transition-all duration-700 pointer-events-auto ${isScrolled
           ? "bg-slate-950/80 backdrop-blur-[40px] border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           : "bg-white/[0.03] backdrop-blur-[15px] border-white/5"
@@ -130,8 +86,8 @@ const Navbar = () => {
         {/* Left Side: Logo & Branding */}
         <Link href="/#home" className="flex items-center gap-4 group">
           <div className="relative w-10 h-10 flex items-center justify-center">
-            <div className="absolute inset-0 border border-primary/40 rounded-sm rotate-45 group-hover:rotate-90 transition-transform duration-500" />
-            <div className="absolute inset-0 border border-primary/20 rounded-sm -rotate-12 group-hover:rotate-0 transition-transform duration-500" />
+            <div className="absolute inset-0 border border-primary/40 rounded-sm rotate-45 group-hover:rotate-[50deg] transition-transform duration-200" />
+            <div className="absolute inset-0 border border-primary/20 rounded-sm -rotate-12 group-hover:-rotate-[8deg] transition-transform duration-200" />
             <span className="text-white font-black text-xl z-10">A</span>
           </div>
           <div className="flex flex-col border-l border-white/10 pl-4">
@@ -178,11 +134,11 @@ const Navbar = () => {
           type="button"
           onClick={scrollToContact}
           whileHover={{
-            scale: 1.05,
+            scale: 1.02,
             borderColor: "#38BDF8",
-            boxShadow: "0 0 20px rgba(56, 189, 248, 0.2)"
+            boxShadow: "0 0 12px rgba(56, 189, 248, 0.15)"
           }}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.99 }}
           className="ml-4 px-8 py-2.5 bg-black border border-white/20 text-white font-bold text-[11px] tracking-widest uppercase rounded-full transition-all flex items-center gap-2 group"
         >
           <span className="group-hover:text-primary transition-colors">Hire Me</span>
@@ -248,4 +204,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

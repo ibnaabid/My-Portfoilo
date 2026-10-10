@@ -142,7 +142,7 @@ const LudoProjects = () => {
             >
               <div className="relative">
                 <Globe size={32} className="opacity-40" />
-                <div className="absolute inset-0 border border-primary/20 rounded-full animate-ping" />
+                <div className="absolute inset-0 border border-primary/20 rounded-full" />
               </div>
               <span className="absolute -bottom-6 font-technical-sm text-[8px] tracking-widest opacity-40 uppercase">Sequence_{dieValue}</span>
             </motion.div>
@@ -279,7 +279,7 @@ const LudoPiece = ({ project, progress, idx, containerRef }: { project: typeof P
         <div className="absolute inset-0 border-t border-b border-black/20 my-auto h-4" />
         <div className="absolute inset-0 border-l border-r border-black/20 mx-auto w-4" />
         
-        <div className="absolute inset-0 rounded-full animate-pulse opacity-40 bg-white" />
+        <div className="absolute inset-0 rounded-full opacity-20 bg-white" />
         <div className="relative z-10 flex flex-col items-center">
           <span className="text-black font-black text-[10px] leading-none">{project.id}</span>
           <span className="text-black/60 font-technical-sm text-[6px] tracking-tight uppercase">Active</span>

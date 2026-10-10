@@ -8,25 +8,26 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // 1. Initialize Lenis
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
 
-      touchMultiplier: 2,
+      touchMultiplier: 1.2,
       infinite: false,
     });
 
     lenisRef.current = lenis;
 
-    // 2. Add class to HTML for CSS requirements
     document.documentElement.classList.add("lenis");
 
-    // 3. Optimized RAF loop
     let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
@@ -35,7 +36,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     rafId = requestAnimationFrame(raf);
 
-    // 4. Cleanup function (Crucial for Deployment)
     return () => {
       lenis.destroy();
       cancelAnimationFrame(rafId);

@@ -18,23 +18,19 @@ const About = () => {
 
           {/* Visual Side */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.5 }}
             className="relative flex-shrink-0"
           >
             <div className="w-64 h-64 md:w-80 md:h-80 relative">
 
               {/* Rotating Rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              <div
                 className="absolute -inset-8 border border-dashed border-primary/30 rounded-full"
               />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              <div
                 className="absolute -inset-4 border border-primary/10 rounded-full"
               />
 
@@ -45,18 +41,11 @@ const About = () => {
                 <img
                   src="/Gemini_Generated_Image_evtujaevtujaevtu.png"
                   alt="Abid"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
                 />
 
                 {/* Dark overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                {/* Scanning line */}
-                <motion.div
-                  animate={{ top: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute left-0 right-0 h-0.5 bg-primary/60 shadow-[0_0_15px_rgba(230,33,41,0.8)] z-20"
-                />
 
                 {/* Name tag */}
                 <div className="absolute bottom-4 left-4 z-10">
@@ -68,30 +57,22 @@ const About = () => {
               </div>
 
               {/* Floating Badges */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              <div
                 className="absolute -top-4 -right-8 p-4 bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl"
               >
                 <Sparkles size={20} className="text-primary-accent" />
-              </motion.div>
+              </div>
 
-              <motion.div
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              <div
                 className="absolute -bottom-8 -left-8 p-5 bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl"
               >
                 <div className="text-[11px] font-technical-sm text-iron-gold uppercase tracking-widest font-bold">
                   System_Sync
                 </div>
                 <div className="w-16 h-1.5 bg-white/10 mt-2 rounded-full overflow-hidden">
-                  <motion.div
-                    animate={{ width: ["10%", "90%", "10%"] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="h-full bg-gradient-to-r from-primary via-iron-gold to-stark-red"
-                  />
+                  <div className="h-full w-2/3 bg-gradient-to-r from-primary via-iron-gold to-stark-red" />
                 </div>
-              </motion.div>
+              </div>
 
             </div>
           </motion.div>
@@ -99,10 +80,10 @@ const About = () => {
           {/* Text Side */}
           <div className="flex-1">
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
             >
               <span className="font-technical-sm text-primary tracking-[0.6em] uppercase text-xs mb-4 block">
                 Personal_Module
@@ -142,17 +123,17 @@ const About = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: item.delay }}
+                    transition={{ delay: item.delay, duration: 0.3 }}
                     whileHover={{
-                      y: -5,
+                      y: -2,
                       borderColor: "rgba(246, 196, 69, 0.3)",
                       backgroundColor: "rgba(255, 255, 255, 0.05)",
                     }}
-                    className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2rem] group transition-all duration-500 relative overflow-hidden"
+                    className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2rem] group transition-colors duration-200 relative overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-iron-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative z-10">
-                      <div className="mb-6 p-4 bg-white/5 w-fit rounded-2xl group-hover:bg-iron-gold/10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+                      <div className="mb-6 p-4 bg-white/5 w-fit rounded-2xl group-hover:bg-iron-gold/10 transition-colors duration-200">
                         {item.icon}
                       </div>
                       <h4 className="text-white font-bold text-xl uppercase tracking-widest mb-3">

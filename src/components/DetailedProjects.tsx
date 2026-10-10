@@ -1,10 +1,24 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ExternalLink, Github, CheckCircle2, Layers, Cpu, Globe } from "lucide-react";
 
-const PROJECTS = [
+type Project = {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  images: string[];
+  techStack: string[];
+  features: string[];
+  liveLink: string;
+  githubLink?: string;
+  backendLink?: string;
+  color: string;
+};
+
+const PROJECTS: Project[] = [
   {
     id: "01",
     title: "FOODIEZONE",
@@ -47,28 +61,28 @@ const PROJECTS = [
   },
   {
     id: "03",
-    title: "B13_SPORT",
-    category: "Sports Project",
-    description: "A dynamic sports portal for event highlights, team features, and an engaging athletic showcase.",
+    title: "CST_HUB",
+    category: "Academic Platform",
+    description: "A shared academic workspace for CST diploma students, bringing study materials, class routines, notices, and AI help together.",
     images: [
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2940&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1517649763987-4c6d7ae3d36b?q=80&w=2940&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2940&auto=format&fit=crop"
     ],
-    techStack: ["Next.js","javascript","strpe"
-      , "TailwindCSS", "html", "API Integration"],
+    techStack: ["CST Student Hub", "Study Resources", "Class Routine", "Notices", "AI Study Help"],
     features: [
-      "Sports event lineup",
-      "Team and player highlights",
-      "Responsive game-themed UI",
-      "Fast loading interactions"
+      "Class notes and study materials",
+      "Quick access to class routines",
+      "Group-wise notices and updates",
+      "AI assistance for classmates"
     ],
-    liveLink: "https://b-13-sport.vercel.app/",
-    githubLink: "https://github.com/ibnaabid/B-13-SPORT",
-    color: "#22c55e"
+    liveLink: "https://cst-hub.vercel.app/",
+    backendLink: "https://csthub-backend-dw3l.onrender.com/",
+    githubLink: "https://github.com/ibnaabid/Cst-Hub",
+    color: "#38bdf8"
   }
 ];
 
-const ProjectSection = ({ project, index }: { project: typeof PROJECTS[0], index: number }) => {
+const ProjectSection = ({ project }: { project: Project }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -94,8 +108,8 @@ const ProjectSection = ({ project, index }: { project: typeof PROJECTS[0], index
                 {/* Main Image */}
                 <div className="aspect-[4/3] overflow-hidden">
                   <motion.img
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.8 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
                     src={project.images[0]}
                     alt={project.title}
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
@@ -178,20 +192,38 @@ const ProjectSection = ({ project, index }: { project: typeof PROJECTS[0], index
             <div className="flex flex-wrap gap-6 pt-6">
               <motion.a
                 href={project.liveLink}
-                whileHover={{ scale: 1.05, backgroundColor: project.color, color: "#000" }}
-                whileTap={{ scale: 0.95 }}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ scale: 1.02, backgroundColor: project.color, color: "#000" }}
+                whileTap={{ scale: 0.99 }}
                 className="px-10 py-5 border border-primary text-primary font-bold text-xs uppercase tracking-[0.2em] rounded-2xl flex items-center gap-3 transition-all duration-300 shadow-lg shadow-primary/5"
               >
                 Launch Sequence <Globe size={18} />
               </motion.a>
-              <motion.a
-                href={project.githubLink}
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 border border-white/10 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-2xl flex items-center gap-3 transition-all"
-              >
-                Source Repository <Github size={18} />
-              </motion.a>
+              {project.backendLink && (
+                <motion.a
+                  href={project.backendLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+                  whileTap={{ scale: 0.99 }}
+                  className="px-10 py-5 border border-white/10 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-2xl flex items-center gap-3 transition-colors"
+                >
+                  Backend API <ExternalLink size={18} />
+                </motion.a>
+              )}
+              {project.githubLink && (
+                <motion.a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+                  whileTap={{ scale: 0.99 }}
+                  className="px-10 py-5 border border-white/10 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-2xl flex items-center gap-3 transition-colors"
+                >
+                  Source Repository <Github size={18} />
+                </motion.a>
+              )}
             </div>
           </div>
         </motion.div>
@@ -222,8 +254,8 @@ const DetailedProjects = () => {
 
       {/* Projects List */}
       <div className="space-y-0">
-        {PROJECTS.map((project, index) => (
-          <ProjectSection key={project.id} project={project} index={index} />
+        {PROJECTS.map((project) => (
+        <ProjectSection key={project.id} project={project} />
         ))}
       </div>
 

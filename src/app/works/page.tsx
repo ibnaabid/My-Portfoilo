@@ -7,7 +7,17 @@ import Footer from "@/components/Footer";
 import WorksHeader from "@/components/WorksHeader";
 import { HeroFeatureCard, MetaCard, WorkGridCard } from "@/components/WorkCards";
 
-const workProjects = [
+type WorkProject = {
+  title: string;
+  sub: string;
+  img: string;
+  delay: number;
+  frontendRepo: string;
+  backendRepo: string;
+  githubRepo?: string;
+};
+
+const workProjects: WorkProject[] = [
   {
     title: "FOODIEZONE",
     sub: "FOOD RESTAURANT PROJECT // NEXT.JS",
@@ -25,10 +35,13 @@ const workProjects = [
     backendRepo: "https://github.com/ibnaabid/A10--008-cat-backend",
   },
   {
-    title: "B13_SPORT",
-    sub: "SPORTS PORTAL // TRAINING & EVENTS",
-    img: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1920&auto=format&fit=crop",
+    title: "CST_HUB",
+    sub: "CST STUDENT HUB // NOTES & ROUTINES",
+    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920&auto=format&fit=crop",
     delay: 0.6,
+    frontendRepo: "https://cst-hub.vercel.app/",
+    backendRepo: "https://csthub-backend-dw3l.onrender.com/",
+    githubRepo: "https://github.com/ibnaabid/Cst-Hub",
   },
 ];
 
@@ -37,6 +50,7 @@ export default function WorksPage() {
     title: string;
     frontendRepo: string;
     backendRepo: string;
+    githubRepo?: string;
   } | null>(null);
 
   return (
@@ -59,7 +73,12 @@ export default function WorksPage() {
               delay={project.delay}
               frontendRepo={project.frontendRepo}
               backendRepo={project.backendRepo}
-              onRepoClick={project.frontendRepo && project.backendRepo ? () => setActiveRepo(project as any) : undefined}
+              onRepoClick={() => setActiveRepo({
+                title: project.title,
+                frontendRepo: project.frontendRepo,
+                backendRepo: project.backendRepo,
+                githubRepo: project.githubRepo,
+              })}
             />
           ))}
         </div>
@@ -77,9 +96,9 @@ export default function WorksPage() {
             </button>
             <div className="space-y-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.4em] text-primary">SOURCE REPOSITORIES</p>
+                <p className="text-xs uppercase tracking-[0.4em] text-primary">PROJECT LINKS</p>
                 <h2 className="text-3xl font-bold text-white mt-2">{activeRepo.title}</h2>
-                <p className="text-slate-400">Frontend and backend repository links for this project.</p>
+                <p className="text-slate-400">Frontend and backend links for this project.</p>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
@@ -89,7 +108,7 @@ export default function WorksPage() {
                   rel="noreferrer"
                   className="block rounded-3xl border border-white/10 bg-white/5 p-6 text-left transition hover:border-primary hover:bg-primary/10"
                 >
-                  <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Frontend Repo</p>
+                  <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Frontend Link</p>
                   <p className="font-semibold text-white break-all">{activeRepo.frontendRepo}</p>
                 </a>
                 <a
@@ -98,9 +117,20 @@ export default function WorksPage() {
                   rel="noreferrer"
                   className="block rounded-3xl border border-white/10 bg-white/5 p-6 text-left transition hover:border-primary hover:bg-primary/10"
                 >
-                  <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Backend Repo</p>
+                  <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Backend Link / API</p>
                   <p className="font-semibold text-white break-all">{activeRepo.backendRepo}</p>
                 </a>
+                {activeRepo.githubRepo && (
+                  <a
+                    href={activeRepo.githubRepo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block rounded-3xl border border-white/10 bg-white/5 p-6 text-left transition hover:border-primary hover:bg-primary/10"
+                  >
+                    <p className="text-sm text-slate-400 uppercase tracking-[0.3em] mb-3">Source Repository</p>
+                    <p className="font-semibold text-white break-all">{activeRepo.githubRepo}</p>
+                  </a>
+                )}
               </div>
             </div>
           </div>

@@ -56,10 +56,11 @@ const ContactForm = () => {
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.35 }}
       className="glass-panel p-10 relative overflow-hidden group border border-primary/30 bg-slate-950/80"
     >
       <div className="absolute top-0 right-0 p-4 z-20">
@@ -74,70 +75,60 @@ const ContactForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative group/input">
               <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">YOUR_NAME</label>
-              <input 
-                className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2" 
-                placeholder="ENTER YOUR NAME" 
-                type="text" 
+              <input
+                className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-colors duration-200"
+                placeholder="ENTER YOUR NAME"
+                type="text"
                 value={formData.name}
                 onChange={handleChange("name")}
               />
-              <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-all duration-500"></div>
+              <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-[width] duration-200"></div>
             </div>
             <div className="relative group/input">
               <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">YOUR_EMAIL</label>
-              <input 
-                className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2" 
-                placeholder="ENTER YOUR EMAIL" 
-                type="email" 
+              <input
+                className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-colors duration-200"
+                placeholder="ENTER YOUR EMAIL"
+                type="email"
                 value={formData.email}
                 onChange={handleChange("email")}
               />
-              <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-all duration-500"></div>
+              <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-[width] duration-200"></div>
             </div>
           </div>
 
           <div className="relative group/input">
             <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">SUBJECT</label>
-            <input 
-              className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2" 
-              placeholder="WHAT IS THIS ABOUT?" 
-              type="text" 
+            <input
+              className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-colors duration-200"
+              placeholder="WHAT IS THIS ABOUT?"
+              type="text"
               value={formData.subject}
               onChange={handleChange("subject")}
             />
-            <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-all duration-500"></div>
+            <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-[width] duration-200"></div>
           </div>
 
           <div className="relative group/input">
             <label className="font-label-caps text-[8px] text-primary absolute -top-4 left-0 opacity-70 group-focus-within/input:opacity-100 transition-opacity">YOUR_MESSAGE</label>
-            <textarea 
-              className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-all focus:pl-2 resize-none" 
-              placeholder="TYPE YOUR MESSAGE..." 
+            <textarea
+              className="w-full bg-transparent border-b border-primary/30 focus:border-primary outline-none py-3 font-body-md text-white transition-colors duration-200 resize-none"
+              placeholder="TYPE YOUR MESSAGE..."
               rows={4}
               value={formData.message}
               onChange={handleChange("message")}
             ></textarea>
-            <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-all duration-500"></div>
-            <span className="blinking-cursor absolute right-0 bottom-4"></span>
+            <div className="absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-focus-within/input:w-full transition-[width] duration-200"></div>
           </div>
 
-          <motion.button 
-            whileHover={{ 
-              backgroundColor: "rgba(88, 216, 223, 0.12)",
-              gap: "2rem"
-            }}
-            whileTap={{ scale: 0.99 }}
-            className="w-full border border-primary/30 bg-primary/10 text-white font-label-caps py-6 hover:bg-primary/20 hover:border-primary transition-all flex justify-between items-center px-10 group/btn relative overflow-hidden" 
+          <button
+            className="w-full border border-primary/30 bg-primary/10 text-white font-label-caps py-6 hover:bg-primary/20 hover:border-primary transition-colors duration-200 flex justify-between items-center px-10 group/btn"
             type="submit"
             disabled={status === "sending"}
           >
             <span className="relative z-10">{status === "sending" ? "SENDING..." : "EXECUTE_SEND"}</span>
-            <span className="material-symbols-outlined relative z-10 group-hover/btn:translate-x-2 transition-transform">trending_flat</span>
-            
-            <motion.div 
-              className="absolute inset-0 bg-primary/5 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-500"
-            />
-          </motion.button>
+            <span className="material-symbols-outlined relative z-10 group-hover/btn:translate-x-1 transition-transform duration-200">trending_flat</span>
+          </button>
         </form>
         {status === "success" && (
           <div className="mt-6 text-emerald-300 text-sm">Your message is ready to send. Your email app should open with the details filled in.</div>
@@ -171,8 +162,6 @@ const ContactForm = () => {
         </div>
       </div>
 
-      <div className="scanning-line opacity-10"></div>
-      
       {/* Decorative SVG elements */}
       <div className="absolute -bottom-10 -right-10 w-40 h-40 opacity-5 pointer-events-none rotate-45">
         <svg viewBox="0 0 100 100" className="w-full h-full stroke-primary fill-none">

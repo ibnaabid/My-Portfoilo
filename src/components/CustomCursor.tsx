@@ -9,7 +9,7 @@ const CustomCursor = () => {
   const mouseY = useMotionValue(0);
 
   // Smooth springs for the outer ring
-  const springConfig = { damping: 20, stiffness: 100 };
+  const springConfig = { damping: 30, stiffness: 200 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -46,7 +46,6 @@ const CustomCursor = () => {
         }}
         className="fixed w-4 h-4 bg-primary/80 rounded-full pointer-events-none z-[9999] hidden md:block shadow-[0_0_15px_#F0C05A]"
       >
-        <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse" />
       </motion.div>
 
       {/* Rotating Outer Rings (Arc Reactor Style) */}
@@ -58,14 +57,12 @@ const CustomCursor = () => {
           y: "-50%",
         }}
         animate={{
-          width: isHovering ? 80 : 40,
-          height: isHovering ? 80 : 40,
-          rotate: 360,
+          width: isHovering ? 52 : 40,
+          height: isHovering ? 52 : 40,
         }}
         transition={{ 
-          width: { type: "spring", damping: 20 },
-          height: { type: "spring", damping: 20 },
-          rotate: { duration: 10, repeat: Infinity, ease: "linear" }
+          width: { type: "spring", damping: 25 },
+          height: { type: "spring", damping: 25 },
         }}
         className="fixed pointer-events-none z-[9998] hidden md:block"
       >

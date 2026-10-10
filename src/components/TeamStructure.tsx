@@ -75,8 +75,8 @@ const TeamStructure = () => {
             {[1, 2, 3, 4, 5].map((i) => (
               <motion.div
                 key={i}
-                animate={{ height: ["20%", "100%", "20%"] }}
-                transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                animate={{ height: ["35%", "70%", "35%"] }}
+                transition={{ duration: 3.5, repeat: Infinity, delay: i * 0.2 }}
                 className="w-1 bg-primary/40"
               />
             ))}
