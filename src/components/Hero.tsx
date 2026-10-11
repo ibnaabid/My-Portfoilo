@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Facebook, Github, Instagram, Linkedin, MapPin } from "lucide-react";
+
+const roles = ["MERN Stack Developer", "Next.js Developer"];
 
 const socialLinks = [
   { icon: <Github size={18} />, href: "https://github.com/ibnaabid", label: "GitHub" },
@@ -10,6 +13,48 @@ const socialLinks = [
   { icon: <Facebook size={18} />, href: "https://www.facebook.com/share/1Cj6eRf4U9/", label: "Facebook" },
   { icon: <Instagram size={18} />, href: "https://www.instagram.com/mdibnaabid?igsh=MWhmcjB3dDV5NnBjYw==", label: "Instagram" },
 ];
+
+const AnimatedRole = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [visibleWords, setVisibleWords] = useState(0);
+  const roleWords = roles[roleIndex].split(" ");
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      if (visibleWords < roleWords.length) {
+        setVisibleWords(visibleWords + 1);
+      } else {
+        setVisibleWords(0);
+        setRoleIndex((roleIndex + 1) % roles.length);
+      }
+    }, visibleWords < roleWords.length ? 480 : 1600);
+
+    return () => window.clearTimeout(timeout);
+  }, [roleIndex, roleWords.length, visibleWords]);
+
+  return (
+    <h2 aria-label="MERN Stack Developer and Next.js Developer" className="mt-6 flex min-h-[2.5em] max-w-2xl flex-wrap items-center gap-x-2 text-xl font-medium uppercase leading-tight tracking-[0.12em] text-white sm:text-2xl md:text-3xl">
+      <span aria-hidden="true" className="flex flex-wrap gap-x-2">
+        {roleWords.slice(0, visibleWords).map((word, index) => (
+          <motion.span
+            key={`${roleIndex}-${index}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.24 }}
+          >
+            {word}
+          </motion.span>
+        ))}
+        <motion.span
+          aria-hidden="true"
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.75, repeat: Infinity, repeatType: "reverse" }}
+          className="inline-block h-[1em] border-l-2 border-sky-300"
+        />
+      </span>
+    </h2>
+  );
+};
 
 const Hero = () => (
   <section id="home" className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#050B18] pb-16 pt-28 md:pb-20">
@@ -62,28 +107,28 @@ const Hero = () => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.55 }}
-        className="order-1 text-left lg:order-2 lg:col-span-7 lg:col-start-3"
+        className="order-1 text-left lg:order-2 lg:col-span-8 lg:col-start-3"
       >
-        <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/15 bg-slate-950/35 px-4 py-2 backdrop-blur-sm">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+        <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-emerald-300/20 bg-slate-950/45 px-4 py-2 shadow-[0_0_32px_rgba(16,185,129,0.08)] backdrop-blur-sm">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
           <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/80">Available for new opportunities</span>
         </div>
 
         <p className="mb-2 text-xs uppercase tracking-[0.55em] text-sky-300">Hello, I&apos;m</p>
-        <h1 className="font-display-xl text-7xl font-bold uppercase leading-[0.88] tracking-[-0.07em] text-white sm:text-8xl md:text-9xl">
-          Abid<span className="text-sky-300">.</span>
+        <h1 aria-label="MD Abid" className="font-display-xl text-6xl font-bold uppercase leading-[0.88] tracking-[-0.07em] text-white drop-shadow-[0_8px_36px_rgba(0,0,0,0.35)] sm:text-8xl md:text-9xl">
+          <motion.span initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.15 }}>MD</motion.span>{" "}
+          <motion.span initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.35 }}>ABID</motion.span>
+          <span className="text-sky-300">.</span>
         </h1>
-        <h2 className="mt-6 max-w-2xl text-xl font-medium uppercase leading-tight tracking-[0.14em] text-white sm:text-2xl md:text-3xl">
-          MERN stack developer
-        </h2>
-        <p className="mt-5 max-w-xl text-sm leading-7 text-slate-200/80 sm:text-base">
+        <AnimatedRole />
+        <p className="mt-5 max-w-xl text-sm leading-7 text-slate-200/85 sm:text-base">
           I&apos;m a CST diploma student and developer from Dinajpur, building thoughtful, responsive web experiences with React, Next.js, Node.js, and MongoDB.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
             href="/#projects"
-            className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sky-100 px-6 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-950 transition-colors hover:bg-white"
+            className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sky-100 px-6 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-950 transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_30px_rgba(56,189,248,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300"
           >
             Explore my work <ArrowUpRight size={15} />
           </Link>
@@ -91,7 +136,7 @@ const Hero = () => (
             href="/MdIbna Abid resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/25 bg-white/[0.06] px-6 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-white/15"
+            className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/25 bg-white/[0.06] px-6 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             View my resume <ArrowDown size={14} />
           </Link>
@@ -105,7 +150,7 @@ const Hero = () => (
               target="_blank"
               rel="noreferrer"
               aria-label={link.label}
-              className="transition-colors hover:text-sky-300"
+              className="transition duration-200 hover:-translate-y-0.5 hover:text-sky-300 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300"
             >
               {link.icon}
             </a>
@@ -114,28 +159,8 @@ const Hero = () => (
           <span className="text-[9px] uppercase tracking-[0.24em] text-white/50">CST Diploma · 2023 Batch</span>
         </div>
       </motion.div>
-
-      <motion.a
-        href="https://cst-hub.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.45, delay: 0.2 }}
-        className="order-3 flex max-w-sm items-center gap-4 rounded-2xl border border-white/15 bg-slate-950/45 p-4 text-left shadow-2xl backdrop-blur-xl transition-colors hover:border-sky-300/50 lg:col-span-3 lg:col-start-10 lg:justify-self-end"
-      >
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-sky-300/30 bg-sky-300/10 text-xs font-bold tracking-wider text-sky-200">
-          CST
-        </div>
-        <div className="min-w-0 flex-1">
-          <span className="block text-[8px] uppercase tracking-[0.25em] text-sky-200">Featured project</span>
-          <span className="mt-1 block text-sm font-semibold text-white">CST Hub</span>
-          <span className="mt-1 block text-xs text-slate-300">A shared academic space for CST students</span>
-        </div>
-        <ArrowUpRight size={16} className="shrink-0 text-white/60" />
-      </motion.a>
     </div>
-  </section>
-);
+    </section>
+  );
 
 export default Hero;
